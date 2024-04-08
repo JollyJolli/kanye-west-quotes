@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanye West Quotes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        #quote {
+            font-size: 24px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+        }
+        #newQuoteBtn {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kanye West Quotes</h1>
+    <div id="quote"></div>
+    <button id="newQuoteBtn">New Quote</button>
+
+    <script>
+        // Function to fetch a random quote from JSON file
+        function getRandomQuote() {
+            fetch('./ye.json')
+                .then(response => response.json())
+                .then(data => {
+                    const randomIndex = Math.floor(Math.random() * data.length);
+                    const quote = data[randomIndex];
+                    document.getElementById('quote').innerText = quote;
+                })
+                .catch(error => console.error('Error fetching quotes:', error));
+        }
+
+        // Event listener for the "New Quote" button
+        document.getElementById('newQuoteBtn').addEventListener('click', getRandomQuote);
+
+        // Fetch a random quote when the page loads
+        getRandomQuote();
+    </script>
+</body>
+</html>
